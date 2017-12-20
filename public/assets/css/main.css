@@ -1,0 +1,65 @@
+body {
+  font-family: AvenirNext, sans-serif;
+  font-weight: 500;
+}
+
+.title-ctn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 170px;
+}
+
+.title {
+  color: #181B3A;
+  font-size: 34px;
+  text-align: center;
+}
+
+.price-table {
+  box-shadow: 0 2px 27px 7px rgba(3,169,245,0.13);
+  width: 80%;
+  max-width: 620px;
+  margin: auto;
+  border-collapse: collapse;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+tr {
+  height: 50px;
+}
+
+th, td {
+  text-align: left;
+  padding-left: 30px;
+  border: 1px solid rgba(255,107,0,0.1);
+}
+
+th {
+  height: 65px;
+  border-top: none;
+}
+
+th:first-child, td:first-child {
+  border-left: none;
+}
+
+th:last-child, td:last-child {
+  border-right: none;
+}
+
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+.name, .price {
+  color: #65748e;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.name {
+  color: #FF6B00;
+}
