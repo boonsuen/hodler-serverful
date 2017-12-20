@@ -18,7 +18,6 @@ app.get('/', (req, res) => {
   var pu_RDN;
   var pu_OMG;
   var pu_WABI;
-  var pu_THC;
   var pu_PING;
 
   var ps_MIOTA;
@@ -27,7 +26,6 @@ app.get('/', (req, res) => {
   var ps_RDN;
   var ps_OMG;
   var ps_WABI;
-  var ps_THC;
   var ps_PING;
 
   axios.get('https://api.coinmarketcap.com/v1/ticker/bitcoin/').then((response) => {
@@ -52,10 +50,6 @@ app.get('/', (req, res) => {
   }).then((response) => {
     pu_WABI = response.data[0].price_usd;
     ps_WABI = response.data[0].price_btc;
-    return axios.get('https://api.coinmarketcap.com/v1/ticker/hempcoin/');
-  }).then((response) => {
-    pu_THC = response.data[0].price_usd;
-    ps_THC = response.data[0].price_btc;
     return axios.get('https://api.coinmarketcap.com/v1/ticker/cryptoping/');
   }).then((response) => {
     pu_PING = response.data[0].price_usd;
@@ -76,15 +70,13 @@ app.get('/', (req, res) => {
       pu_RDN: Number(Math.round(pu_RDN+'e2')+'e-2'),
       pu_OMG: Number(Math.round(pu_OMG+'e2')+'e-2'),
       pu_WABI: Number(Math.round(pu_WABI+'e2')+'e-2'),
-      pu_THC,
-      pu_PING,
+      pu_PING: Number(Math.round(pu_PING+'e2')+'e-2'),
       ps_MIOTA: Math.floor(ps_MIOTA * 100000000),
       ps_POWR: Math.floor(ps_POWR * 100000000),
       ps_ARDR: Math.floor(ps_ARDR * 100000000),
       ps_RDN: Math.floor(ps_RDN * 100000000),
       ps_OMG: Math.floor(ps_OMG * 100000000),
       ps_WABI: Math.floor(ps_WABI * 100000000),
-      ps_THC: Math.floor(ps_THC * 100000000),
       ps_PING: Math.floor(ps_PING * 100000000)
     });
   }).catch((e) => {
