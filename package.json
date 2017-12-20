@@ -5,16 +5,13 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.17.1",
     "express": "^4.16.2",
-    "handlebars": "^4.0.11",
-    "hbs": "^4.0.1",
-    "request": "^2.83.0",
-    "request-promise": "^4.2.2"
+    "hbs": "^4.0.1"
   }
 }
