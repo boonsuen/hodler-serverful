@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hodler</title>
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/css/normalize.css" rel="stylesheet">
+    <link href="assets/css/font.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="title-ctn">
+      <img class="logo" src="assets/img/logo.svg">
+      <div class="title">Hodler</div>
+    </div>
+    <div class="switch">
+      <a class="not-active" href=".">Holding</a>
+      <a class="active" href="./interested">Interested</a>
+    </div>
+    <table class="price-table">
+      <thead>
+        <tr class="row-head">
+          <th class="name">Name</th>
+          <th class="price">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ethereum (ETH)</td>
+          <td>&dollar;{{pu_ETH}} / {{ps_ETH}}</td>
+        </tr>
+        <tr>
+          <td>HempCoin (THC)</td>
+          <td>&dollar;{{pu_THC}} / {{ps_THC}}</td>
+        </tr>
+        <tr>
+          <td>Monaco (MCO)</td>
+          <td>&dollar;{{pu_MCO}} / {{ps_MCO}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
