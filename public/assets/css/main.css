@@ -5,9 +5,15 @@ body {
 
 .title-ctn {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 170px;
+}
+
+.logo {
+  width: 35px;
+  margin-bottom: 15px;
 }
 
 .title {
