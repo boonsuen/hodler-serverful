@@ -5,7 +5,6 @@
     <title>Hodler</title>
     <link href="assets/img/favicon.png" rel="icon">
     <link href="assets/css/normalize.css" rel="stylesheet">
-    <link href="assets/css/font.css" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">
   </head>
   <body>
@@ -22,42 +21,47 @@
         <tr class="row-head">
           <th class="name">Name</th>
           <th class="price">Price</th>
+          <th class="change">Change</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>Bitcoin (BTC)</td>
           <td>&dollar;{{pu_BTC}}</td>
-        </tr>
-        <tr>
-          <td>Litecoin (LTC)</td>
-          <td>&dollar;{{pu_LTC}} / {{ps_LTC}}</td>
+          <td class="pc">{{ch_BTC}}</td>
         </tr>
         <tr>
           <td>IOTA (MIOTA)</td>
           <td>&dollar;{{pu_MIOTA}} / {{ps_MIOTA}}</td>
+          <td class="pc">{{ch_MIOTA}}</td>
         </tr>
         <tr>
           <td>Power Ledger (POWR)</td>
           <td>&dollar;{{pu_POWR}} / {{ps_POWR}}</td>
+          <td class="pc">{{ch_POWR}}</td>
         </tr>
         <tr>
           <td>Ardor (ARDR)</td>
           <td>&dollar;{{pu_ARDR}} / {{ps_ARDR}}</td>
+          <td class="pc">{{ch_ARDR}}</td>
         </tr>
         <tr>
           <td>Raiden Network (RDN)</td>
           <td>&dollar;{{pu_RDN}} / {{ps_RDN}}</td>
+          <td class="pc">{{ch_RDN}}</td>
         </tr>
         <tr>
           <td>OmiseGO (OMG)</td>
           <td>&dollar;{{pu_OMG}} / {{ps_OMG}}</td>
+          <td class="pc">{{ch_OMG}}</td>
         </tr>
         <tr>
           <td>Wabi (WABI)</td>
           <td>&dollar;{{pu_WABI}} / {{ps_WABI}}</td>
+          <td class="pc">{{ch_WABI}}</td>
         </tr>
       </tbody>
     </table>
+    <script src="assets/js/main.js"></script>
   </body>
 </html>

@@ -1,3 +1,15 @@
+@font-face {
+  font-family: AvenirNext;
+  src: url(../fonts/AvenirNextLTPro-Medium.woff);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: AvenirNext;
+  src: url(../fonts/AvenirNextLTPro-Bold.woff);
+  font-weight: 700;
+}
+
 body {
   font-family: AvenirNext, sans-serif;
   font-weight: 500;
@@ -58,7 +70,7 @@ body {
 .price-table {
   box-shadow: 0 2px 27px 7px rgba(3,169,245,0.13);
   width: 80%;
-  max-width: 620px;
+  max-width: 720px;
   margin: 0 auto 80px auto;
   border-collapse: collapse;
   border-radius: 10px;
@@ -93,7 +105,7 @@ tr:last-child td {
   border-bottom: none;
 }
 
-.name, .price {
+.name, .price, .change {
   color: #65748e;
   font-size: 26px;
   font-weight: 700;
@@ -101,4 +113,8 @@ tr:last-child td {
 
 .name {
   color: #FF6B00;
+}
+
+.change, td:last-child {
+  width: 25%;
 }

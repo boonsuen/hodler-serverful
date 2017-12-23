@@ -5,7 +5,6 @@
     <title>Hodler</title>
     <link href="assets/img/favicon.png" rel="icon">
     <link href="assets/css/normalize.css" rel="stylesheet">
-    <link href="assets/css/font.css" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">
   </head>
   <body>
@@ -22,22 +21,42 @@
         <tr class="row-head">
           <th class="name">Name</th>
           <th class="price">Price</th>
+          <th class="change">Change</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>Ethereum (ETH)</td>
           <td>&dollar;{{pu_ETH}} / {{ps_ETH}}</td>
+          <td class="pc">{{ch_ETH}}</td>
+        </tr>
+        <tr>
+          <td>Ripple (XRP)</td>
+          <td>&dollar;{{pu_XRP}} / {{ps_XRP}}</td>
+          <td class="pc">{{ch_XRP}}</td>
+        </tr>
+        <tr>
+          <td>Litecoin (LTC)</td>
+          <td>&dollar;{{pu_LTC}} / {{ps_LTC}}</td>
+          <td class="pc">{{ch_LTC}}</td>
         </tr>
         <tr>
           <td>HempCoin (THC)</td>
           <td>&dollar;{{pu_THC}} / {{ps_THC}}</td>
+          <td class="pc">{{ch_THC}}</td>
         </tr>
         <tr>
           <td>Monaco (MCO)</td>
           <td>&dollar;{{pu_MCO}} / {{ps_MCO}}</td>
+          <td class="pc">{{ch_MCO}}</td>
+        </tr>
+        <tr>
+          <td>Blitzcash (BLITZ)</td>
+          <td>&dollar;{{pu_BLITZ}} / {{ps_BLITZ}}</td>
+          <td class="pc">{{ch_BLITZ}}</td>
         </tr>
       </tbody>
     </table>
+    <script src="assets/js/main.js"></script>
   </body>
 </html>
