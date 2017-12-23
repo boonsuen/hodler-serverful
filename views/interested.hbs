@@ -57,6 +57,16 @@
         </tr>
       </tbody>
     </table>
-    <script src="assets/js/main.js"></script>
+    <script>
+    const pcElem = document.getElementsByClassName("pc");
+    for (let elem of pcElem) {
+      let price = Number(elem.textContent);
+      if (price > 0) {
+        elem.style.color = "#4ae264";
+      } else if (price < 0) {
+        elem.style.color = "#ff8282";
+      }
+    }
+    </script>
   </body>
 </html>
