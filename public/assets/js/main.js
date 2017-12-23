@@ -1,10 +1,10 @@
 const pcElem = document.getElementsByClassName("pc");
 
-for (let i = pcElem.length - 1; i >=0; i--) {
-  let price = Number(pcElem[i].textContent);
+for (let elem of pcElem) {
+  let price = Number(elem.textContent);
   if (price > 0) {
-    pcElem[i].style.color = "#57f273";
+    elem.style.color = "#57f273";
   } else if (price < 0) {
-    pcElem[i].style.color = "#ff8282";
+    elem.style.color = "#ff8282";
   }
 }
