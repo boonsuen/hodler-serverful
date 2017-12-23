@@ -14,7 +14,7 @@ var prices = {};
 
 app.get('/', (req, res) => {
   axios.get('https://api.coinmarketcap.com/v1/ticker/bitcoin/').then((response) => {
-    prices.pu_TC = response.data[0].price_usd;
+    prices.pu_BTC = response.data[0].price_usd;
     prices.ch_BTC = response.data[0].percent_change_24h;
     return axios.get('https://api.coinmarketcap.com/v1/ticker/iota/');
   }).then((response) => {
