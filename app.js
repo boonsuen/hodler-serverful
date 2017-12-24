@@ -26,6 +26,7 @@ let ltcObj;
 let thcObj;
 let mcoObj;
 let blitzObj;
+let lendObj;
 
 app.get('/', (req, res) => {
   if (currencies != undefined) {
@@ -71,6 +72,7 @@ app.get('/', (req, res) => {
       thcObj = currencies.find(currency => (currency.id === 'hempcoin'));
       mcoObj = currencies.find(currency => (currency.id === 'monaco'));
       blitzObj = currencies.find(currency => (currency.id === 'blitzcash'));
+      lendObj = currencies.find(currency => (currency.id === 'ethlend'));
       res.render('home.hbs', {
         hold: "active",
         interest: "not-active",
@@ -118,18 +120,21 @@ app.get('/interested', (req, res) => {
       pu_THC: Number(Math.round(thcObj.price_usd+'e2')+'e-2'),
       pu_MCO: Number(Math.round(mcoObj.price_usd+'e2')+'e-2'),
       pu_BLITZ: Number(Math.round(blitzObj.price_usd+'e2')+'e-2'),
+      pu_LEND: Number(Math.round(lendObj.price_usd+'e2')+'e-2'),
       ps_ETH: Math.floor(ethObj.price_btc * 100000000),
       ps_XRP: Math.floor(xrpObj.price_btc * 100000000),
       ps_LTC: Math.floor(ltcObj.price_btc * 100000000),
       ps_THC: Math.floor(thcObj.price_btc * 100000000),
       ps_MCO: Math.floor(mcoObj.price_btc * 100000000),
       ps_BLITZ: Math.floor(blitzObj.price_btc * 100000000),
+      ps_LEND: Math.floor(lendObj.price_btc * 100000000),
       ch_ETH: ethObj.percent_change_24h,
       ch_XRP: xrpObj.percent_change_24h,
       ch_LTC: ltcObj.percent_change_24h,
       ch_THC: thcObj.percent_change_24h,
       ch_MCO: mcoObj.percent_change_24h,
-      ch_BLITZ: blitzObj.percent_change_24h
+      ch_BLITZ: blitzObj.percent_change_24h,
+      ch_LEND: lendObj.percent_change_24h
     });
   } else {
     axios.get('https://api.coinmarketcap.com/v1/ticker/?limit=400').then((response) => {
@@ -148,6 +153,7 @@ app.get('/interested', (req, res) => {
       thcObj = currencies.find(currency => (currency.id === 'hempcoin'));
       mcoObj = currencies.find(currency => (currency.id === 'monaco'));
       blitzObj = currencies.find(currency => (currency.id === 'blitzcash'));
+      lendObj = currencies.find(currency => (currency.id === 'ethlend'));
       res.render('interested.hbs', {
         hold: "not-active",
         interest: "active",
@@ -157,18 +163,21 @@ app.get('/interested', (req, res) => {
         pu_THC: Number(Math.round(thcObj.price_usd+'e2')+'e-2'),
         pu_MCO: Number(Math.round(mcoObj.price_usd+'e2')+'e-2'),
         pu_BLITZ: Number(Math.round(blitzObj.price_usd+'e2')+'e-2'),
+        pu_LEND: Number(Math.round(lendObj.price_usd+'e2')+'e-2'),
         ps_ETH: Math.floor(ethObj.price_btc * 100000000),
         ps_XRP: Math.floor(xrpObj.price_btc * 100000000),
         ps_LTC: Math.floor(ltcObj.price_btc * 100000000),
         ps_THC: Math.floor(thcObj.price_btc * 100000000),
         ps_MCO: Math.floor(mcoObj.price_btc * 100000000),
         ps_BLITZ: Math.floor(blitzObj.price_btc * 100000000),
+        ps_LEND: Math.floor(lendObj.price_btc * 100000000),
         ch_ETH: ethObj.percent_change_24h,
         ch_XRP: xrpObj.percent_change_24h,
         ch_LTC: ltcObj.percent_change_24h,
         ch_THC: thcObj.percent_change_24h,
         ch_MCO: mcoObj.percent_change_24h,
-        ch_BLITZ: blitzObj.percent_change_24h
+        ch_BLITZ: blitzObj.percent_change_24h,
+        ch_LEND: lendObj.percent_change_24h
       });
     }).catch((e) => {
       if (e.code === 'ENOTFOUND') {
