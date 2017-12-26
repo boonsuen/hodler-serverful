@@ -108,10 +108,10 @@ app.get('/', (req, res) => {
   }
 });
 
-app.get('/interested', (req, res) => {
+app.get('/watching', (req, res) => {
   if (currencies != undefined) {
     console.log("Yeah faster interested!");
-    res.render('interested.hbs', {
+    res.render('watching.hbs', {
       hold: "not-active",
       interest: "active",
       pu_ETH: Number(Math.round(ethObj.price_usd+'e2')+'e-2'),
@@ -154,7 +154,7 @@ app.get('/interested', (req, res) => {
       mcoObj = currencies.find(currency => (currency.id === 'monaco'));
       blitzObj = currencies.find(currency => (currency.id === 'blitzcash'));
       lendObj = currencies.find(currency => (currency.id === 'ethlend'));
-      res.render('interested.hbs', {
+      res.render('watching.hbs', {
         hold: "not-active",
         interest: "active",
         pu_ETH: Number(Math.round(ethObj.price_usd+'e2')+'e-2'),
