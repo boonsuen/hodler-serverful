@@ -15,12 +15,36 @@ body {
   font-weight: 500;
 }
 
-.title-ctn {
+a {
+  text-decoration: none;
+}
+
+.header {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
   height: 160px;
+  position: relative;
+  width: 80%;
+  max-width: 720px;
+  margin: auto;
+}
+
+.links {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+}
+
+.links a {
+  margin: 10px 13px 0 0;
+}
+
+.links img {
+  width: 27px;
 }
 
 .logo {
@@ -43,7 +67,6 @@ body {
 }
 
 .switch a {
-  text-decoration: none;
   height: 45px;
   text-align: center;
   line-height: 45px;
