@@ -20,14 +20,15 @@ let rdnObj;
 let omgObj;
 let wabiObj;
 let icxObj;
+let thcObj
 let potObj;
+let neblObj;
 
 let ethObj;
 let xrpObj;
+let adaObj;
 let ltcObj;
-let thcObj;
 let mcoObj;
-let blitzObj;
 let lendObj;
 
 app.get('/', (req, res) => {
@@ -42,7 +43,9 @@ app.get('/', (req, res) => {
       pu_OMG: Number(Math.round(omgObj.price_usd+'e2')+'e-2'),
       pu_WABI: Number(Math.round(wabiObj.price_usd+'e2')+'e-2'),
       pu_ICX: Number(Math.round(icxObj.price_usd+'e2')+'e-2'),
+      pu_THC: Number(Math.round(thcObj.price_usd+'e2')+'e-2'),
       pu_POT: Number(Math.round(potObj.price_usd+'e2')+'e-2'),
+      pu_NEBL: Number(Math.round(neblObj.price_usd+'e2')+'e-2'),
       ps_MIOTA: Math.floor(miotaObj.price_btc * 100000000),
       ps_POWR: Math.floor(powrObj.price_btc * 100000000),
       ps_ARDR: Math.floor(ardrObj.price_btc * 100000000),
@@ -50,7 +53,9 @@ app.get('/', (req, res) => {
       ps_OMG: Math.floor(omgObj.price_btc * 100000000),
       ps_WABI: Math.floor(wabiObj.price_btc * 100000000),
       ps_ICX: Math.floor(icxObj.price_btc * 100000000),
+      ps_THC: Math.floor(thcObj.price_btc * 100000000),
       ps_POT: Math.floor(potObj.price_btc * 100000000),
+      ps_NEBL: Math.floor(neblObj.price_btc * 100000000),
       ch_BTC: btcObj.percent_change_24h,
       ch_MIOTA: miotaObj.percent_change_24h,
       ch_POWR: powrObj.percent_change_24h,
@@ -59,7 +64,9 @@ app.get('/', (req, res) => {
       ch_OMG: omgObj.percent_change_24h,
       ch_WABI: wabiObj.percent_change_24h,
       ch_ICX: icxObj.percent_change_24h,
-      ch_POT: potObj.percent_change_24h
+      ch_THC: thcObj.percent_change_24h,
+      ch_POT: potObj.percent_change_24h,
+      ch_NEBL: neblObj.percent_change_24h
     });
   } else {
     axios.get('https://api.coinmarketcap.com/v1/ticker/?limit=400').then((response) => {
@@ -73,11 +80,13 @@ app.get('/', (req, res) => {
       omgObj = currencies.find(currency => (currency.id === 'omisego'));
       wabiObj = currencies.find(currency => (currency.id === 'wabi'));
       icxObj = currencies.find(currency => (currency.id === 'icon'));
+      thcObj = currencies.find(currency => (currency.id === 'hempcoin'));
       potObj = currencies.find(currency => (currency.id === 'potcoin'));
+      neblObj = currencies.find(currency => (currency.id === 'neblio'));
       ethObj = currencies.find(currency => (currency.id === 'ethereum'));
       xrpObj = currencies.find(currency => (currency.id === 'ripple'));
+      adaObj = currencies.find(currency => (currency.id === 'cardano'));
       ltcObj = currencies.find(currency => (currency.id === 'litecoin'));
-      thcObj = currencies.find(currency => (currency.id === 'hempcoin'));
       mcoObj = currencies.find(currency => (currency.id === 'monaco'));
       lendObj = currencies.find(currency => (currency.id === 'ethlend'));
       res.render('home.hbs', {
@@ -89,7 +98,9 @@ app.get('/', (req, res) => {
         pu_OMG: Number(Math.round(omgObj.price_usd+'e2')+'e-2'),
         pu_WABI: Number(Math.round(wabiObj.price_usd+'e2')+'e-2'),
         pu_ICX: Number(Math.round(icxObj.price_usd+'e2')+'e-2'),
+        pu_THC: Number(Math.round(thcObj.price_usd+'e2')+'e-2'),
         pu_POT: Number(Math.round(potObj.price_usd+'e2')+'e-2'),
+        pu_NEBL: Number(Math.round(neblObj.price_usd+'e2')+'e-2'),
         ps_MIOTA: Math.floor(miotaObj.price_btc * 100000000),
         ps_POWR: Math.floor(powrObj.price_btc * 100000000),
         ps_ARDR: Math.floor(ardrObj.price_btc * 100000000),
@@ -97,7 +108,9 @@ app.get('/', (req, res) => {
         ps_OMG: Math.floor(omgObj.price_btc * 100000000),
         ps_WABI: Math.floor(wabiObj.price_btc * 100000000),
         ps_ICX: Math.floor(icxObj.price_btc * 100000000),
+        ps_THC: Math.floor(thcObj.price_btc * 100000000),
         ps_POT: Math.floor(potObj.price_btc * 100000000),
+        ps_NEBL: Math.floor(neblObj.price_btc * 100000000),
         ch_BTC: btcObj.percent_change_24h,
         ch_MIOTA: miotaObj.percent_change_24h,
         ch_POWR: powrObj.percent_change_24h,
@@ -106,7 +119,9 @@ app.get('/', (req, res) => {
         ch_OMG: omgObj.percent_change_24h,
         ch_WABI: wabiObj.percent_change_24h,
         ch_ICX: icxObj.percent_change_24h,
-        ch_POT: potObj.percent_change_24h
+        ch_THC: thcObj.percent_change_24h,
+        ch_POT: potObj.percent_change_24h,
+        ch_NEBL: neblObj.percent_change_24h
       });
     }).catch((e) => {
       if (e.code === 'ENOTFOUND') {
@@ -125,20 +140,20 @@ app.get('/watching', (req, res) => {
     res.render('watching.hbs', {
       pu_ETH: Number(Math.round(ethObj.price_usd+'e2')+'e-2'),
       pu_XRP: Number(Math.round(xrpObj.price_usd+'e2')+'e-2'),
+      pu_ADA: adaObj.price_usd,
       pu_LTC: Number(Math.round(ltcObj.price_usd+'e2')+'e-2'),
-      pu_THC: Number(Math.round(thcObj.price_usd+'e2')+'e-2'),
       pu_MCO: Number(Math.round(mcoObj.price_usd+'e2')+'e-2'),
       pu_LEND: lendObj.price_usd,
       ps_ETH: Math.floor(ethObj.price_btc * 100000000),
       ps_XRP: Math.floor(xrpObj.price_btc * 100000000),
+      ps_ADA: Math.floor(adaObj.price_btc * 100000000),
       ps_LTC: Math.floor(ltcObj.price_btc * 100000000),
-      ps_THC: Math.floor(thcObj.price_btc * 100000000),
       ps_MCO: Math.floor(mcoObj.price_btc * 100000000),
       ps_LEND: Math.floor(lendObj.price_btc * 100000000),
       ch_ETH: ethObj.percent_change_24h,
       ch_XRP: xrpObj.percent_change_24h,
+      ch_ADA: adaObj.percent_change_24h,
       ch_LTC: ltcObj.percent_change_24h,
-      ch_THC: thcObj.percent_change_24h,
       ch_MCO: mcoObj.percent_change_24h,
       ch_LEND: lendObj.percent_change_24h
     });
@@ -154,11 +169,13 @@ app.get('/watching', (req, res) => {
       omgObj = currencies.find(currency => (currency.id === 'omisego'));
       wabiObj = currencies.find(currency => (currency.id === 'wabi'));
       icxObj = currencies.find(currency => (currency.id === 'icon'));
+      thcObj = currencies.find(currency => (currency.id === 'hempcoin'));
       potObj = currencies.find(currency => (currency.id === 'potcoin'));
+      neblObj = currencies.find(currency => (currency.id === 'neblio'));
       ethObj = currencies.find(currency => (currency.id === 'ethereum'));
       xrpObj = currencies.find(currency => (currency.id === 'ripple'));
+      adaObj = currencies.find(currency => (currency.id === 'cardano'));
       ltcObj = currencies.find(currency => (currency.id === 'litecoin'));
-      thcObj = currencies.find(currency => (currency.id === 'hempcoin'));
       mcoObj = currencies.find(currency => (currency.id === 'monaco'));
       lendObj = currencies.find(currency => (currency.id === 'ethlend'));
       res.render('watching.hbs', {
