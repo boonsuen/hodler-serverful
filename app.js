@@ -31,6 +31,7 @@ let ltcObj;
 let mcoObj;
 let lendObj;
 let subObj;
+let lunObj;
 
 app.get('/', (req, res) => {
   if (currencies != undefined) {
@@ -91,6 +92,7 @@ app.get('/', (req, res) => {
       mcoObj = currencies.find(currency => (currency.id === 'monaco'));
       lendObj = currencies.find(currency => (currency.id === 'ethlend'));
       subObj = currencies.find(currency => (currency.id === 'substratum'));
+      lunObj = currencies.find(currency => (currency.id === 'lunyr'));
       res.render('home.hbs', {
         pu_BTC: Number(Math.round(btcObj.price_usd+'e2')+'e-2'),
         pu_MIOTA: Number(Math.round(miotaObj.price_usd+'e2')+'e-2'),
@@ -147,6 +149,7 @@ app.get('/watching', (req, res) => {
       pu_MCO: Number(Math.round(mcoObj.price_usd+'e2')+'e-2'),
       pu_LEND: lendObj.price_usd,
       pu_SUB: subObj.price_usd,
+      pu_LUN: Number(Math.round(lunObj.price_usd+'e2')+'e-2'),
       ps_ETH: Math.floor(ethObj.price_btc * 100000000),
       ps_XRP: Math.floor(xrpObj.price_btc * 100000000),
       ps_ADA: Math.floor(adaObj.price_btc * 100000000),
@@ -154,13 +157,15 @@ app.get('/watching', (req, res) => {
       ps_MCO: Math.floor(mcoObj.price_btc * 100000000),
       ps_LEND: Math.floor(lendObj.price_btc * 100000000),
       ps_SUB: Math.floor(subObj.price_btc * 100000000),
+      ps_LUN: Math.floor(lunObj.price_btc * 100000000),
       ch_ETH: ethObj.percent_change_24h,
       ch_XRP: xrpObj.percent_change_24h,
       ch_ADA: adaObj.percent_change_24h,
       ch_LTC: ltcObj.percent_change_24h,
       ch_MCO: mcoObj.percent_change_24h,
       ch_LEND: lendObj.percent_change_24h,
-      ch_SUB: subObj.percent_change_24h
+      ch_SUB: subObj.percent_change_24h,
+      ch_LUN: lunObj.percent_change_24h
     });
   } else {
     axios.get('https://api.coinmarketcap.com/v1/ticker/?limit=400').then((response) => {
@@ -184,6 +189,7 @@ app.get('/watching', (req, res) => {
       mcoObj = currencies.find(currency => (currency.id === 'monaco'));
       lendObj = currencies.find(currency => (currency.id === 'ethlend'));
       subObj = currencies.find(currency => (currency.id === 'substratum'));
+      lunObj = currencies.find(currency => (currency.id === 'lunyr'));
       res.render('watching.hbs', {
         pu_ETH: Number(Math.round(ethObj.price_usd+'e2')+'e-2'),
         pu_XRP: Number(Math.round(xrpObj.price_usd+'e2')+'e-2'),
@@ -192,6 +198,7 @@ app.get('/watching', (req, res) => {
         pu_MCO: Number(Math.round(mcoObj.price_usd+'e2')+'e-2'),
         pu_LEND: lendObj.price_usd,
         pu_SUB: subObj.price_usd,
+        pu_LUN: Number(Math.round(lunObj.price_usd+'e2')+'e-2'),
         ps_ETH: Math.floor(ethObj.price_btc * 100000000),
         ps_XRP: Math.floor(xrpObj.price_btc * 100000000),
         ps_ADA: Math.floor(adaObj.price_btc * 100000000),
@@ -199,13 +206,15 @@ app.get('/watching', (req, res) => {
         ps_MCO: Math.floor(mcoObj.price_btc * 100000000),
         ps_LEND: Math.floor(lendObj.price_btc * 100000000),
         ps_SUB: Math.floor(subObj.price_btc * 100000000),
+        ps_LUN: Math.floor(lunObj.price_btc * 100000000),
         ch_ETH: ethObj.percent_change_24h,
         ch_XRP: xrpObj.percent_change_24h,
         ch_ADA: adaObj.percent_change_24h,
         ch_LTC: ltcObj.percent_change_24h,
         ch_MCO: mcoObj.percent_change_24h,
         ch_LEND: lendObj.percent_change_24h,
-        ch_SUB: subObj.percent_change_24h
+        ch_SUB: subObj.percent_change_24h,
+        ch_LUN: lunObj.percent_change_24h
       });
     }).catch((e) => {
       if (e.code === 'ENOTFOUND') {
