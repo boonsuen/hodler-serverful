@@ -138,6 +138,18 @@ tr:last-child td {
   color: #FF6B00;
 }
 
+.change {
+  position: relative;
+}
+
+.change:hover::after {
+  content: url('../img/sorter.svg');
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  width: 18px;
+}
+
 .change, td:last-child {
   width: 25%;
 }

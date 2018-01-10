@@ -22,7 +22,7 @@ let wabiObj;
 let icxObj;
 let thcObj
 let potObj;
-let neblObj;
+let nulsObj;
 
 let ethObj;
 let xrpObj;
@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
       pu_ICX: Number(Math.round(icxObj.price_usd+'e2')+'e-2'),
       pu_THC: Number(Math.round(thcObj.price_usd+'e2')+'e-2'),
       pu_POT: Number(Math.round(potObj.price_usd+'e2')+'e-2'),
-      pu_NEBL: Number(Math.round(neblObj.price_usd+'e2')+'e-2'),
+      pu_NULS: Number(Math.round(nulsObj.price_usd+'e2')+'e-2'),
       ps_MIOTA: Math.floor(miotaObj.price_btc * 100000000),
       ps_POWR: Math.floor(powrObj.price_btc * 100000000),
       ps_ARDR: Math.floor(ardrObj.price_btc * 100000000),
@@ -57,7 +57,7 @@ app.get('/', (req, res) => {
       ps_ICX: Math.floor(icxObj.price_btc * 100000000),
       ps_THC: Math.floor(thcObj.price_btc * 100000000),
       ps_POT: Math.floor(potObj.price_btc * 100000000),
-      ps_NEBL: Math.floor(neblObj.price_btc * 100000000),
+      ps_NULS: Math.floor(nulsObj.price_btc * 100000000),
       ch_BTC: btcObj.percent_change_24h,
       ch_MIOTA: miotaObj.percent_change_24h,
       ch_POWR: powrObj.percent_change_24h,
@@ -68,7 +68,7 @@ app.get('/', (req, res) => {
       ch_ICX: icxObj.percent_change_24h,
       ch_THC: thcObj.percent_change_24h,
       ch_POT: potObj.percent_change_24h,
-      ch_NEBL: neblObj.percent_change_24h
+      ch_NULS: nulsObj.percent_change_24h
     });
   } else {
     axios.get('https://api.coinmarketcap.com/v1/ticker/?limit=400').then((response) => {
@@ -84,7 +84,7 @@ app.get('/', (req, res) => {
       icxObj = currencies.find(currency => (currency.id === 'icon'));
       thcObj = currencies.find(currency => (currency.id === 'hempcoin'));
       potObj = currencies.find(currency => (currency.id === 'potcoin'));
-      neblObj = currencies.find(currency => (currency.id === 'neblio'));
+      nulsObj = currencies.find(currency => (currency.id === 'nuls'));
       ethObj = currencies.find(currency => (currency.id === 'ethereum'));
       xrpObj = currencies.find(currency => (currency.id === 'ripple'));
       adaObj = currencies.find(currency => (currency.id === 'cardano'));
@@ -104,7 +104,7 @@ app.get('/', (req, res) => {
         pu_ICX: Number(Math.round(icxObj.price_usd+'e2')+'e-2'),
         pu_THC: Number(Math.round(thcObj.price_usd+'e2')+'e-2'),
         pu_POT: Number(Math.round(potObj.price_usd+'e2')+'e-2'),
-        pu_NEBL: Number(Math.round(neblObj.price_usd+'e2')+'e-2'),
+        pu_NULS: Number(Math.round(nulsObj.price_usd+'e2')+'e-2'),
         ps_MIOTA: Math.floor(miotaObj.price_btc * 100000000),
         ps_POWR: Math.floor(powrObj.price_btc * 100000000),
         ps_ARDR: Math.floor(ardrObj.price_btc * 100000000),
@@ -114,7 +114,7 @@ app.get('/', (req, res) => {
         ps_ICX: Math.floor(icxObj.price_btc * 100000000),
         ps_THC: Math.floor(thcObj.price_btc * 100000000),
         ps_POT: Math.floor(potObj.price_btc * 100000000),
-        ps_NEBL: Math.floor(neblObj.price_btc * 100000000),
+        ps_NULS: Math.floor(nulsObj.price_btc * 100000000),
         ch_BTC: btcObj.percent_change_24h,
         ch_MIOTA: miotaObj.percent_change_24h,
         ch_POWR: powrObj.percent_change_24h,
@@ -125,7 +125,7 @@ app.get('/', (req, res) => {
         ch_ICX: icxObj.percent_change_24h,
         ch_THC: thcObj.percent_change_24h,
         ch_POT: potObj.percent_change_24h,
-        ch_NEBL: neblObj.percent_change_24h
+        ch_NULS: nulsObj.percent_change_24h
       });
     }).catch((e) => {
       if (e.code === 'ENOTFOUND') {
@@ -181,7 +181,7 @@ app.get('/watching', (req, res) => {
       icxObj = currencies.find(currency => (currency.id === 'icon'));
       thcObj = currencies.find(currency => (currency.id === 'hempcoin'));
       potObj = currencies.find(currency => (currency.id === 'potcoin'));
-      neblObj = currencies.find(currency => (currency.id === 'neblio'));
+      nulsObj = currencies.find(currency => (currency.id === 'nuls'));
       ethObj = currencies.find(currency => (currency.id === 'ethereum'));
       xrpObj = currencies.find(currency => (currency.id === 'ripple'));
       adaObj = currencies.find(currency => (currency.id === 'cardano'));
