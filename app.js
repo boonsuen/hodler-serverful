@@ -21,7 +21,7 @@ let omgObj;
 let wabiObj;
 let icxObj;
 let thcObj
-let potObj;
+let tksObj;
 let nulsObj;
 
 let ethObj;
@@ -35,7 +35,7 @@ let lunObj;
 
 app.get('/', (req, res) => {
   if (currencies != undefined) {
-    console.log("Yeah faster home!");
+    console.log("Yeah faster home!", tksObj);
     res.render('home.hbs', {
       pu_BTC: Number(Math.round(btcObj.price_usd+'e2')+'e-2'),
       pu_MIOTA: Number(Math.round(miotaObj.price_usd+'e2')+'e-2'),
@@ -46,7 +46,7 @@ app.get('/', (req, res) => {
       pu_WABI: Number(Math.round(wabiObj.price_usd+'e2')+'e-2'),
       pu_ICX: Number(Math.round(icxObj.price_usd+'e2')+'e-2'),
       pu_THC: Number(Math.round(thcObj.price_usd+'e2')+'e-2'),
-      pu_POT: Number(Math.round(potObj.price_usd+'e2')+'e-2'),
+      pu_TKS: Number(Math.round(tksObj.price_usd+'e2')+'e-2'),
       pu_NULS: Number(Math.round(nulsObj.price_usd+'e2')+'e-2'),
       ps_MIOTA: Math.floor(miotaObj.price_btc * 100000000),
       ps_POWR: Math.floor(powrObj.price_btc * 100000000),
@@ -56,7 +56,7 @@ app.get('/', (req, res) => {
       ps_WABI: Math.floor(wabiObj.price_btc * 100000000),
       ps_ICX: Math.floor(icxObj.price_btc * 100000000),
       ps_THC: Math.floor(thcObj.price_btc * 100000000),
-      ps_POT: Math.floor(potObj.price_btc * 100000000),
+      ps_TKS: Math.floor(tksObj.price_btc * 100000000),
       ps_NULS: Math.floor(nulsObj.price_btc * 100000000),
       ch_BTC: btcObj.percent_change_24h,
       ch_MIOTA: miotaObj.percent_change_24h,
@@ -67,11 +67,11 @@ app.get('/', (req, res) => {
       ch_WABI: wabiObj.percent_change_24h,
       ch_ICX: icxObj.percent_change_24h,
       ch_THC: thcObj.percent_change_24h,
-      ch_POT: potObj.percent_change_24h,
+      ch_TKS: tksObj.percent_change_24h,
       ch_NULS: nulsObj.percent_change_24h
     });
   } else {
-    axios.get('https://api.coinmarketcap.com/v1/ticker/?limit=400').then((response) => {
+    axios.get('https://api.coinmarketcap.com/v1/ticker/?limit=500').then((response) => {
       console.log("Slower home but yeah!");
       currencies = response.data;
       btcObj = currencies.find(currency => (currency.id === 'bitcoin'));
@@ -83,7 +83,7 @@ app.get('/', (req, res) => {
       wabiObj = currencies.find(currency => (currency.id === 'wabi'));
       icxObj = currencies.find(currency => (currency.id === 'icon'));
       thcObj = currencies.find(currency => (currency.id === 'hempcoin'));
-      potObj = currencies.find(currency => (currency.id === 'potcoin'));
+      tksObj = currencies.find(currency => (currency.id === 'tokes'));
       nulsObj = currencies.find(currency => (currency.id === 'nuls'));
       ethObj = currencies.find(currency => (currency.id === 'ethereum'));
       xrpObj = currencies.find(currency => (currency.id === 'ripple'));
@@ -103,7 +103,7 @@ app.get('/', (req, res) => {
         pu_WABI: Number(Math.round(wabiObj.price_usd+'e2')+'e-2'),
         pu_ICX: Number(Math.round(icxObj.price_usd+'e2')+'e-2'),
         pu_THC: Number(Math.round(thcObj.price_usd+'e2')+'e-2'),
-        pu_POT: Number(Math.round(potObj.price_usd+'e2')+'e-2'),
+        pu_TKS: Number(Math.round(tksObj.price_usd+'e2')+'e-2'),
         pu_NULS: Number(Math.round(nulsObj.price_usd+'e2')+'e-2'),
         ps_MIOTA: Math.floor(miotaObj.price_btc * 100000000),
         ps_POWR: Math.floor(powrObj.price_btc * 100000000),
@@ -113,7 +113,7 @@ app.get('/', (req, res) => {
         ps_WABI: Math.floor(wabiObj.price_btc * 100000000),
         ps_ICX: Math.floor(icxObj.price_btc * 100000000),
         ps_THC: Math.floor(thcObj.price_btc * 100000000),
-        ps_POT: Math.floor(potObj.price_btc * 100000000),
+        ps_TKS: Math.floor(tksObj.price_btc * 100000000),
         ps_NULS: Math.floor(nulsObj.price_btc * 100000000),
         ch_BTC: btcObj.percent_change_24h,
         ch_MIOTA: miotaObj.percent_change_24h,
@@ -124,7 +124,7 @@ app.get('/', (req, res) => {
         ch_WABI: wabiObj.percent_change_24h,
         ch_ICX: icxObj.percent_change_24h,
         ch_THC: thcObj.percent_change_24h,
-        ch_POT: potObj.percent_change_24h,
+        ch_TKS: tksObj.percent_change_24h,
         ch_NULS: nulsObj.percent_change_24h
       });
     }).catch((e) => {
@@ -168,7 +168,7 @@ app.get('/watching', (req, res) => {
       ch_LUN: lunObj.percent_change_24h
     });
   } else {
-    axios.get('https://api.coinmarketcap.com/v1/ticker/?limit=400').then((response) => {
+    axios.get('https://api.coinmarketcap.com/v1/ticker/?limit=500').then((response) => {
       console.log("Slower watching but yeah!");
       currencies = response.data;
       btcObj = currencies.find(currency => (currency.id === 'bitcoin'));
@@ -180,7 +180,7 @@ app.get('/watching', (req, res) => {
       wabiObj = currencies.find(currency => (currency.id === 'wabi'));
       icxObj = currencies.find(currency => (currency.id === 'icon'));
       thcObj = currencies.find(currency => (currency.id === 'hempcoin'));
-      potObj = currencies.find(currency => (currency.id === 'potcoin'));
+      tksObj = currencies.find(currency => (currency.id === 'tokes'));
       nulsObj = currencies.find(currency => (currency.id === 'nuls'));
       ethObj = currencies.find(currency => (currency.id === 'ethereum'));
       xrpObj = currencies.find(currency => (currency.id === 'ripple'));
