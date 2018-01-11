@@ -142,12 +142,19 @@ tr:last-child td {
   position: relative;
 }
 
-.change:hover::after {
+.change::after {
+  transition: opacity .1s;
+  opacity: 0;
   content: url('../img/sorter.svg');
   position: absolute;
   right: 20px;
   top: 15px;
   width: 18px;
+}
+
+.change:hover::after {
+  opacity: 1;
+  cursor: pointer;
 }
 
 .change, td:last-child {
