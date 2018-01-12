@@ -10,6 +10,7 @@ app.set('view engine', 'hbs');
 
 app.use(express.static(__dirname + '/public'));
 
+const API_URL = 'https://api.coinmarketcap.com/v1/ticker/?limit=600';
 let currencies;
 
 let btcObj;
@@ -35,7 +36,7 @@ let lunObj;
 
 app.get('/', (req, res) => {
   if (currencies != undefined) {
-    console.log("Yeah faster home!", tksObj);
+    console.log("Yeah faster home!");
     res.render('home.hbs', {
       pu_BTC: Number(Math.round(btcObj.price_usd+'e2')+'e-2'),
       pu_MIOTA: Number(Math.round(miotaObj.price_usd+'e2')+'e-2'),
@@ -71,7 +72,7 @@ app.get('/', (req, res) => {
       ch_NULS: nulsObj.percent_change_24h
     });
   } else {
-    axios.get('https://api.coinmarketcap.com/v1/ticker/?limit=600').then((response) => {
+    axios.get(API_URL).then((response) => {
       console.log("Slower home but yeah!");
       currencies = response.data;
       btcObj = currencies.find(currency => (currency.id === 'bitcoin'));
@@ -168,7 +169,7 @@ app.get('/watching', (req, res) => {
       ch_LUN: lunObj.percent_change_24h
     });
   } else {
-    axios.get('https://api.coinmarketcap.com/v1/ticker/?limit=600').then((response) => {
+    axios.get(API_URL).then((response) => {
       console.log("Slower watching but yeah!");
       currencies = response.data;
       btcObj = currencies.find(currency => (currency.id === 'bitcoin'));

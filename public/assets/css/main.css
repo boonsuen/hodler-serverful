@@ -143,7 +143,7 @@ tr:last-child td {
 }
 
 .change::after {
-  transition: opacity .1s;
+  transition: opacity .2s;
   opacity: 0;
   content: url('../img/sorter.svg');
   position: absolute;
