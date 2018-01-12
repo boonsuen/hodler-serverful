@@ -71,7 +71,7 @@ app.get('/', (req, res) => {
       ch_NULS: nulsObj.percent_change_24h
     });
   } else {
-    axios.get('https://api.coinmarketcap.com/v1/ticker/?limit=500').then((response) => {
+    axios.get('https://api.coinmarketcap.com/v1/ticker/?limit=600').then((response) => {
       console.log("Slower home but yeah!");
       currencies = response.data;
       btcObj = currencies.find(currency => (currency.id === 'bitcoin'));
@@ -168,7 +168,7 @@ app.get('/watching', (req, res) => {
       ch_LUN: lunObj.percent_change_24h
     });
   } else {
-    axios.get('https://api.coinmarketcap.com/v1/ticker/?limit=500').then((response) => {
+    axios.get('https://api.coinmarketcap.com/v1/ticker/?limit=600').then((response) => {
       console.log("Slower watching but yeah!");
       currencies = response.data;
       btcObj = currencies.find(currency => (currency.id === 'bitcoin'));
