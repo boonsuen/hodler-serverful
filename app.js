@@ -18,7 +18,7 @@ let miotaObj;
 let powrObj;
 let ardrObj;
 let rdnObj;
-let omgOb;
+let omgObj;
 let wabiObj;
 let icxObj;
 let thcObj
@@ -228,6 +228,4 @@ app.get('/watching', (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server is up on port ${port}`);
-});
+app.listen(port);
