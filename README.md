@@ -4,7 +4,7 @@ Simple crypto price tracker
 - Request limit applied
 
 ### Coming soon
-- Light version at [/hodler/light](https://boonsuen.com/hodler/light)
+- Light version at [/hodler/light](https://boonsuen.com/light)
 	- Fast page load
 	- Single page
 	- Mobile version
