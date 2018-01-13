@@ -4,11 +4,10 @@ Simple crypto price tracker
 - Request limit applied
 
 ### Coming soon
-- Light version at [/light](https://boonsuen.com/hodler/light)
+- Lite version at [/lite](https://boonsuen.com/hodler/lite)
 	- Fast page load
-	- Single page
-	- Mobile frequently
-	- Minimal UI
+	- Minimal
+	- Mobile friendly
 - Sorting features
 	- Price change
 	- Exchanges

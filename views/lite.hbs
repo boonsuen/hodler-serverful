@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hodler Lite</title>
+    <link href="assets/img/favicon.png" rel="icon">
+    <style>
+    @font-face {
+      font-family: AvenirNext;
+      src: url(assets/fonts/AvenirNextLTPro-Medium.woff);
+      font-weight: 500;
+    }
+
+    @font-face {
+      font-family: AvenirNext;
+      src: url(assets/fonts/AvenirNextLTPro-Bold.woff);
+      font-weight: 700;
+    }
+
+    body {
+      font-family: AvenirNext, sans-serif;
+      font-weight: 500;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      height: 160px;
+      position: relative;
+      width: 80%;
+      max-width: 720px;
+      margin: auto;
+    }
+
+    .links {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .links a {
+      margin: 10px 13px 0 0;
+    }
+
+    .links img {
+      width: 27px;
+    }
+
+    .logo {
+      width: 35px;
+      margin-bottom: 15px;
+    }
+
+    .title {
+      color: #181B3A;
+      font-size: 34px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .switch {
+      margin: 0 auto 30px auto;
+      display: flex;
+      width: 199px;
+      justify-content: center;
+    }
+
+    .switch a {
+      height: 45px;
+      text-align: center;
+      line-height: 45px;
+      width: 100px;
+      box-sizing: border-box;
+    }
+
+    .active {
+      background-color: #EE732F;
+      color: #fff;
+    }
+
+    .not-active {
+      color: #EE732F;
+      border: 1px solid #EE732F;
+      transition: all .2s;
+    }
+
+    .not-active:hover {
+      background-color: rgba(255,107,0,0.1);
+      color: #EE732F;
+    }
+
+    .price-table {
+      box-shadow: 0 2px 27px 7px rgba(3,169,245,0.13);
+      width: 80%;
+      max-width: 720px;
+      margin: 0 auto 80px auto;
+      border-collapse: collapse;
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
+
+    tr {
+      height: 50px;
+    }
+
+    th, td {
+      text-align: left;
+      padding-left: 30px;
+      border: 1px solid rgba(255,107,0,0.1);
+    }
+
+    th {
+      height: 65px;
+      border-top: none;
+    }
+
+    th:first-child, td:first-child {
+      border-left: none;
+    }
+
+    th:last-child, td:last-child {
+      border-right: none;
+    }
+
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .name, .price, .change {
+      color: #65748e;
+      font-size: 26px;
+      font-weight: 700;
+    }
+
+    .name {
+      color: #FF6B00;
+    }
+
+    .change {
+      position: relative;
+    }
+
+    .change::after {
+      transition: opacity .2s;
+      opacity: 0;
+      content: url('assets/img/sorter.svg');
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      width: 18px;
+    }
+
+    .change:hover::after {
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    .change, td:last-child {
+      width: 25%;
+    }
+    </style>
+  </head>
+  <body>
+    <table class="price-table">
+      <thead>
+        <tr class="row-head">
+          <th class="name">Name</th>
+          <th class="price">Price</th>
+          <th class="change">Change</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Bitcoin (BTC)</td>
+          <td>&dollar;{{pu_BTC}}</td>
+          <td class="pc">{{ch_BTC}}</td>
+        </tr>
+        <tr>
+          <td>IOTA (MIOTA)</td>
+          <td>&dollar;{{pu_MIOTA}} / {{ps_MIOTA}}</td>
+          <td class="pc">{{ch_MIOTA}}</td>
+        </tr>
+        <tr>
+          <td>Power Ledger (POWR)</td>
+          <td>&dollar;{{pu_POWR}} / {{ps_POWR}}</td>
+          <td class="pc">{{ch_POWR}}</td>
+        </tr>
+        <tr>
+          <td>Ardor (ARDR)</td>
+          <td>&dollar;{{pu_ARDR}} / {{ps_ARDR}}</td>
+          <td class="pc">{{ch_ARDR}}</td>
+        </tr>
+        <tr>
+          <td>Raiden Network (RDN)</td>
+          <td>&dollar;{{pu_RDN}} / {{ps_RDN}}</td>
+          <td class="pc">{{ch_RDN}}</td>
+        </tr>
+        <tr>
+          <td>OmiseGO (OMG)</td>
+          <td>&dollar;{{pu_OMG}} / {{ps_OMG}}</td>
+          <td class="pc">{{ch_OMG}}</td>
+        </tr>
+        <tr>
+          <td>WaBi (WABI)</td>
+          <td>&dollar;{{pu_WABI}} / {{ps_WABI}}</td>
+          <td class="pc">{{ch_WABI}}</td>
+        </tr>
+        <tr>
+          <td>ICON (ICX)</td>
+          <td>&dollar;{{pu_ICX}} / {{ps_ICX}}</td>
+          <td class="pc">{{ch_ICX}}</td>
+        </tr>
+        <tr>
+          <td>HempCoin (THC)</td>
+          <td>&dollar;{{pu_THC}} / {{ps_THC}}</td>
+          <td class="pc">{{ch_THC}}</td>
+        </tr>
+        <tr>
+          <td>Tokes (TKS)</td>
+          <td>&dollar;{{pu_TKS}} / {{ps_TKS}}</td>
+          <td class="pc">{{ch_TKS}}</td>
+        </tr>
+        <tr>
+          <td>Nuls (NULS)</td>
+          <td>&dollar;{{pu_NULS}} / {{ps_NULS}}</td>
+          <td class="pc">{{ch_NULS}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <script>
+    const pcElem = document.getElementsByClassName("pc");
+    for (let elem of pcElem) {
+      let price = Number(elem.textContent);
+      if (price > 0) {
+        elem.style.color = "#4ae264";
+      } else if (price < 0) {
+        elem.style.color = "#ff8282";
+      }
+    }
+    </script>
+  </body>
+</html>
