@@ -7,7 +7,7 @@ Simple crypto price tracker
 - Light version at [/light](https://boonsuen.com/hodler/light)
 	- Fast page load
 	- Single page
-	- Mobile version
+	- Mobile frequently
 	- Minimal UI
 - Sorting features
 	- Price change
