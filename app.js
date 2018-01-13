@@ -18,7 +18,7 @@ let miotaObj;
 let powrObj;
 let ardrObj;
 let rdnObj;
-let omgObj;
+let omgOb;
 let wabiObj;
 let icxObj;
 let thcObj
