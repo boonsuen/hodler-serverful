@@ -14,7 +14,7 @@ let rdnObj;
 let omgObj;
 let wabiObj;
 let icxObj;
-let thcObj
+let thcObj;
 let tksObj;
 let nulsObj;
 
