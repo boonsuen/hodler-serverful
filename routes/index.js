@@ -60,8 +60,8 @@ router.get('/', (req, res) => {
   } else {
     axios.get(API_URL).then((response) => {
       currencies = response.data;
-      for (let i = 0; i < coinNames.length; i++) {
-        assignCoinData(coinNames[i]);
+      for (name of coinNames) {
+        assignCoinData(name);
       }
 
       res.render('home.hbs', {
@@ -137,8 +137,8 @@ router.get('/watching', (req, res) => {
   } else {
     axios.get(API_URL).then((response) => {
       currencies = response.data;
-      for (let i = 0; i < coinNames.length; i++) {
-        assignCoinData(coinNames[i]);
+      for (name of coinNames) {
+        assignCoinData(name);
       }
 
       res.render('watching.hbs', {
