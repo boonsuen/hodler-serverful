@@ -61,7 +61,7 @@ router.get('/', (req, res) => {
     axios.get(API_URL).then((response) => {
       currencies = response.data;
       for (name of coinNames) {
-        assignCoinData(name);;
+        assignCoinData(name);
       }
 
       res.render('home.hbs', {
