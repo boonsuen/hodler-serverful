@@ -3,7 +3,7 @@ const axios = require('axios');
 
 const router = express.Router();
 
-const API_URL = 'https://api.coinmarketcap.com/v1/ticker/?limit=600';
+const API_URL = 'https://api.coinmarketcap.com/v1/ticker/?limit=300';
 let currencies;
 
 let btcObj;
