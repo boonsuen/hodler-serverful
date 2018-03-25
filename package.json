@@ -15,5 +15,6 @@
     "express": "^4.16.2",
     "hbs": "^4.0.1",
     "nodemon": "^1.17.2"
-  }
+  },
+  "repository": "github:boonsuen/hodler"
 }
