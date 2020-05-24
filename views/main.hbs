@@ -50,6 +50,12 @@
       </tbody>
     </table>
     <script>
+    (function() {
+      if (!location.href.endsWith('/') && location.pathname === '/hodler-serverful') {
+        window.location = location.href + '/';
+      }
+    }())
+
     const pcElem = document.getElementsByClassName("pc");
     for (let elem of pcElem) {
       let price = Number(elem.textContent);
