@@ -1,12 +1,11 @@
 {
-  "name": "hodler",
+  "name": "hodler-serverful",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js -e js,hbs"
   },
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",

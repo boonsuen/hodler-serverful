@@ -1,17 +1,26 @@
 @font-face {
-  font-family: AvenirNext;
-  src: url(../fonts/AvenirNextLTPro-Medium.woff);
+  font-family: "Manrope";
+  src: url(../fonts/Manrope-Regular.woff2) format('woff2'),
+       url(../fonts/Manrope-Regular.woff) format('woff');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url(../fonts/Manrope-Medium.woff2) format('woff2'),
+       url(../fonts/Manrope-Medium.woff) format('woff');
   font-weight: 500;
 }
 
 @font-face {
-  font-family: AvenirNext;
-  src: url(../fonts/AvenirNextLTPro-Bold.woff);
+  font-family: "Manrope";
+  src: url(../fonts/Manrope-Bold.woff2) format('woff2'),
+       url(../fonts/Manrope-Bold.woff) format('woff');
   font-weight: 700;
 }
 
 body {
-  font-family: AvenirNext, sans-serif;
+  font-family: "Manrope", sans-serif;
   font-weight: 500;
 }
 

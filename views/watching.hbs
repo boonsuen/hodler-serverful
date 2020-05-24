@@ -2,20 +2,20 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Hodler</title>
-    <link href="fonts/AvenirNextLTPro-Medium.woff" rel="preload" as="font" type="font/woff2" crossorigin>
-    <link href="fonts/AvenirNextLTPro-Bold.woff" rel="preload" as="font" type="font/woff2" crossorigin>
+    <link href="fonts/Manrope-Medium.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
+    <link href="fonts/Manrope-Bold.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
     <link href="img/favicon.png" rel="icon">
     <link href="css/normalize.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+    <title>Hodler Serverful</title>
   </head>
   <body>
     <div class="header">
       <div class="links">
-        <a href="https://github.com/boonsuen/hodler" target="_blank">
+        <a href="https://github.com/boonsuen/hodler-serverful" target="_blank" rel="noopener noreferrer">
           <img src="img/github.svg">
         </a>
-        <a href="https://twitter.com/boon_suen" target="_blank">
+        <a href="https://twitter.com/_wnxn" target="_blank" rel="noopener noreferrer">
           <img src="img/twitter.svg">
         </a>
       </div>
@@ -23,7 +23,7 @@
       <div class="title">Hodler</div>
     </div>
     <div class="switch">
-      <a class="not-active" href=".">Holding</a>
+      <a class="not-active" href=".">Main</a>
       <a class="active" href="./watching">Watching</a>
     </div>
     <table class="price-table">
@@ -35,66 +35,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Ethereum (ETH)</td>
-          <td>&dollar;{{pu_ETH}} / {{ps_ETH}}</td>
-          <td class="pc">{{ch_ETH}}</td>
-        </tr>
-        <tr>
-          <td>Ripple (XRP)</td>
-          <td>&dollar;{{pu_XRP}} / {{ps_XRP}}</td>
-          <td class="pc">{{ch_XRP}}</td>
-        </tr>
-        <tr>
-          <td>IOTA (MIOTA)</td>
-          <td>&dollar;{{pu_MIOTA}} / {{ps_MIOTA}}</td>
-          <td class="pc">{{ch_MIOTA}}</td>
-        </tr>
-        <tr>
-          <td>Cardano (ADA)</td>
-          <td>&dollar;{{pu_ADA}} / {{ps_ADA}}</td>
-          <td class="pc">{{ch_ADA}}</td>
-        </tr>
-        <tr>
-          <td>Litecoin (LTC)</td>
-          <td>&dollar;{{pu_LTC}} / {{ps_LTC}}</td>
-          <td class="pc">{{ch_LTC}}</td>
-        </tr>
-        <tr>
-          <td>OmiseGO (OMG)</td>
-          <td>&dollar;{{pu_OMG}} / {{ps_OMG}}</td>
-          <td class="pc">{{ch_OMG}}</td>
-        </tr>
-        <tr>
-          <td>Icon (ICX)</td>
-          <td>&dollar;{{pu_ICX}} / {{ps_ICX}}</td>
-          <td class="pc">{{ch_ICX}}</td>
-        </tr>
-        <tr>
-          <td>Ardor (ARDR)</td>
-          <td>&dollar;{{pu_ARDR}} / {{ps_ARDR}}</td>
-          <td class="pc">{{ch_ARDR}}</td>
-        </tr>
-        <tr>
-          <td>Raiden Network Token (RDN)</td>
-          <td>&dollar;{{pu_RDN}} / {{ps_RDN}}</td>
-          <td class="pc">{{ch_RDN}}</td>
-        </tr>
-        <tr>
-          <td>Monaco (MCO)</td>
-          <td>&dollar;{{pu_MCO}} / {{ps_MCO}}</td>
-          <td class="pc">{{ch_MCO}}</td>
-        </tr>
-        <tr>
-          <td>Substratum (SUB)</td>
-          <td>&dollar;{{pu_SUB}} / {{ps_SUB}}</td>
-          <td class="pc">{{ch_SUB}}</td>
-        </tr>
-        <tr>
-          <td>ETHLend (LEND)</td>
-          <td>&dollar;{{pu_LEND}} / {{ps_LEND}}</td>
-          <td class="pc">{{ch_LEND}}</td>
-        </tr>
+        {{#each coinsDataToRender}}
+          <tr>
+            <td>{{this.name}} ({{toUpperCase this.symbol}})</td>
+            {{evaluateIfBitcoin this.id this.usd this.btc}}
+            <td class="pc">{{this.usd_24h_change}}</td>
+          </tr>
+        {{/each}}
       </tbody>
     </table>
     <script>
