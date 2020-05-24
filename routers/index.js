@@ -32,8 +32,8 @@ const watchingCoinsInfo = [
 
 const mainCoinsIdList = mainCoinsInfo.map(coinObj => coinObj.id);
 const watchingCoinsIdList = watchingCoinsInfo.map(coinObj => coinObj.id);
-const fullCoinsIdList = mainCoinsIdList.concat(watchingCoinsIdList);
-const API_URL = `https://api.coingecko.com/api/v3/simple/price?ids=${fullCoinsIdList.join()}&vs_currencies=usd%2Cbtc&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true`;
+const allCoinsIdList = mainCoinsIdList.concat(watchingCoinsIdList);
+const API_URL = `https://api.coingecko.com/api/v3/simple/price?ids=${allCoinsIdList.join()}&vs_currencies=usd%2Cbtc&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true`;
 
 // const sleep = (milliseconds) => {
 //   return new Promise(resolve => setTimeout(resolve, milliseconds))
@@ -60,8 +60,9 @@ router.get('/', (req, res) => {
       }
     }).sort((a, b) => b.usd_market_cap - a.usd_market_cap);
 
-    res.render('home', {
-      coinsDataToRender
+    res.render('main', {
+      coinsDataToRender,
+      isMainView: true
     });
   }).catch((e) => {
     if (e.code === 'ENOTFOUND') {
@@ -86,8 +87,9 @@ router.get('/watching', (req, res) => {
       }
     }).sort((a, b) => b.usd_market_cap - a.usd_market_cap);
 
-    res.render('watching', {
-      coinsDataToRender
+    res.render('main', {
+      coinsDataToRender,
+      isMainView: false
     });
   }).catch((e) => {
     if (e.code === 'ENOTFOUND') {

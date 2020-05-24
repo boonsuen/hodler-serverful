@@ -7,9 +7,8 @@ const liteRoutes = require('./routers/lite.js');
 const app = express();
 const port = process.env.PORT || 3000;
 
-hbs.registerPartials('views/partials');
 hbs.registerHelper('toUpperCase', string => string.toUpperCase());
-hbs.registerHelper("evaluateIfBitcoin", function(id, usd, btc) {
+hbs.registerHelper('evaluateIfBitcoin', function(id, usd, btc) {
   if (id === 'bitcoin') {
     return new hbs.SafeString("<td>&dollar;" + usd + "</td>");
   } else {

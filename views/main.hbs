@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">    
     <link href="fonts/Manrope-Medium.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-    <link href="fonts/Manrope-Bold.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
+    <link href="fonts/Manrope-ExtraBold.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
     <link rel="icon" href="img/logo.svg">
     <link href="css/normalize.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
@@ -23,8 +23,13 @@
       <div class="title">Hodler</div>
     </div>
     <div class="switch">
-      <a class="active" href=".">Main</a>
-      <a class="not-active" href="./watching">Watching</a>
+      {{#if isMainView}}
+        <a class="active" href=".">Main</a>
+        <a class="not-active" href="./watching">Watching</a>
+      {{else}}
+        <a class="not-active" href=".">Main</a>
+        <a class="active" href="./watching">Watching</a>
+      {{/if}}
     </div>
     <table class="price-table">
       <thead>

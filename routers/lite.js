@@ -3,130 +3,57 @@ const axios = require('axios');
 
 const router = express.Router();
 
-const API_URL = 'https://api.coinmarketcap.com/v1/ticker/?limit=300';
-let currencies;
+const allCoinsInfo = [
+  {
+    id: 'basic-attention-token',
+    symbol: 'bat',
+    name: 'Basic Attention Token'
+  },
+  { id: 'bitcoin', symbol: 'btc', name: 'Bitcoin' },
+  { id: 'cardano', symbol: 'ada', name: 'Cardano' },
+  { id: 'eos', symbol: 'eos', name: 'EOS' },
+  { id: 'neo', symbol: 'neo', name: 'NEO' },
+  { id: 'nuls', symbol: 'nuls', name: 'Nuls' },
+  { id: 'power-ledger', symbol: 'powr', name: 'Power Ledger' },
+  { id: 'wabi', symbol: 'wabi', name: 'Tael' },
+  { id: 'ardor', symbol: 'ardr', name: 'Ardor' },
+  { id: 'ethereum', symbol: 'eth', name: 'Ethereum' },
+  { id: 'ethlend', symbol: 'lend', name: 'Aave' },
+  { id: 'icon', symbol: 'icx', name: 'ICON' },
+  { id: 'iota', symbol: 'miota', name: 'IOTA' },
+  { id: 'litecoin', symbol: 'ltc', name: 'Litecoin' },
+  { id: 'monaco', symbol: 'mco', name: 'MCO' },
+  { id: 'omisego', symbol: 'omg', name: 'OmiseGO' },
+  { id: 'ripple', symbol: 'xrp', name: 'XRP' }
+];
 
-let btcObj;
-let miotaObj;
-let powrObj;
-let ardrObj;
-let rdnObj;
-let omgObj;
-let wabiObj;
-let icxObj;
-let thcObj
-let tksObj;
-let nulsObj;
-let ethObj;
-let xrpObj;
-let adaObj;
-let ltcObj;
-let mcoObj;
-let lendObj;
-let subObj;
-let lunObj;
+const allCoinsIdList = allCoinsInfo.map(coinObj => coinObj.id);
+const API_URL = `https://api.coingecko.com/api/v3/simple/price?ids=${allCoinsIdList.join()}&vs_currencies=usd%2Cbtc&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true`;
 
 router.get('/', (req, res) => {
-  if (currencies != undefined) {
-    res.render('lite.hbs', {
-      pu_BTC: Number(Math.round(btcObj.price_usd+'e2')+'e-2'),
-      pu_MIOTA: Number(Math.round(miotaObj.price_usd+'e2')+'e-2'),
-      pu_POWR: Number(Math.round(powrObj.price_usd+'e2')+'e-2'),
-      pu_ARDR: Number(Math.round(ardrObj.price_usd+'e2')+'e-2'),
-      pu_RDN: Number(Math.round(rdnObj.price_usd+'e2')+'e-2'),
-      pu_OMG: Number(Math.round(omgObj.price_usd+'e2')+'e-2'),
-      pu_WABI: Number(Math.round(wabiObj.price_usd+'e2')+'e-2'),
-      pu_ICX: Number(Math.round(icxObj.price_usd+'e2')+'e-2'),
-      pu_THC: Number(Math.round(thcObj.price_usd+'e2')+'e-2'),
-      pu_TKS: Number(Math.round(tksObj.price_usd+'e2')+'e-2'),
-      pu_NULS: Number(Math.round(nulsObj.price_usd+'e2')+'e-2'),
-      ps_MIOTA: Math.floor(miotaObj.price_btc * 100000000),
-      ps_POWR: Math.floor(powrObj.price_btc * 100000000),
-      ps_ARDR: Math.floor(ardrObj.price_btc * 100000000),
-      ps_RDN: Math.floor(rdnObj.price_btc * 100000000),
-      ps_OMG: Math.floor(omgObj.price_btc * 100000000),
-      ps_WABI: Math.floor(wabiObj.price_btc * 100000000),
-      ps_ICX: Math.floor(icxObj.price_btc * 100000000),
-      ps_THC: Math.floor(thcObj.price_btc * 100000000),
-      ps_TKS: Math.floor(tksObj.price_btc * 100000000),
-      ps_NULS: Math.floor(nulsObj.price_btc * 100000000),
-      ch_BTC: btcObj.percent_change_24h,
-      ch_MIOTA: miotaObj.percent_change_24h,
-      ch_POWR: powrObj.percent_change_24h,
-      ch_ARDR: ardrObj.percent_change_24h,
-      ch_RDN: rdnObj.percent_change_24h,
-      ch_OMG: omgObj.percent_change_24h,
-      ch_WABI: wabiObj.percent_change_24h,
-      ch_ICX: icxObj.percent_change_24h,
-      ch_THC: thcObj.percent_change_24h,
-      ch_TKS: tksObj.percent_change_24h,
-      ch_NULS: nulsObj.percent_change_24h
-    });
-  } else {
-    axios.get(API_URL).then((response) => {
-      currencies = response.data;
-      btcObj = currencies.find(currency => (currency.id === 'bitcoin'));
-      miotaObj = currencies.find(currency => (currency.id === 'iota'));
-      powrObj = currencies.find(currency => (currency.id === 'power-ledger'));
-      ardrObj = currencies.find(currency => (currency.id === 'ardor'));
-      rdnObj = currencies.find(currency => (currency.id === 'raiden-network-token'));
-      omgObj = currencies.find(currency => (currency.id === 'omisego'));
-      wabiObj = currencies.find(currency => (currency.id === 'wabi'));
-      icxObj = currencies.find(currency => (currency.id === 'icon'));
-      thcObj = currencies.find(currency => (currency.id === 'hempcoin'));
-      tksObj = currencies.find(currency => (currency.id === 'tokes'));
-      nulsObj = currencies.find(currency => (currency.id === 'nuls'));
-      ethObj = currencies.find(currency => (currency.id === 'ethereum'));
-      xrpObj = currencies.find(currency => (currency.id === 'ripple'));
-      adaObj = currencies.find(currency => (currency.id === 'cardano'));
-      ltcObj = currencies.find(currency => (currency.id === 'litecoin'));
-      mcoObj = currencies.find(currency => (currency.id === 'monaco'));
-      lendObj = currencies.find(currency => (currency.id === 'ethlend'));
-      subObj = currencies.find(currency => (currency.id === 'substratum'));
-      lunObj = currencies.find(currency => (currency.id === 'lunyr'));
-      res.render('lite.hbs', {
-        pu_BTC: Number(Math.round(btcObj.price_usd+'e2')+'e-2'),
-        pu_MIOTA: Number(Math.round(miotaObj.price_usd+'e2')+'e-2'),
-        pu_POWR: Number(Math.round(powrObj.price_usd+'e2')+'e-2'),
-        pu_ARDR: Number(Math.round(ardrObj.price_usd+'e2')+'e-2'),
-        pu_RDN: Number(Math.round(rdnObj.price_usd+'e2')+'e-2'),
-        pu_OMG: Number(Math.round(omgObj.price_usd+'e2')+'e-2'),
-        pu_WABI: Number(Math.round(wabiObj.price_usd+'e2')+'e-2'),
-        pu_ICX: Number(Math.round(icxObj.price_usd+'e2')+'e-2'),
-        pu_THC: Number(Math.round(thcObj.price_usd+'e2')+'e-2'),
-        pu_TKS: Number(Math.round(tksObj.price_usd+'e2')+'e-2'),
-        pu_NULS: Number(Math.round(nulsObj.price_usd+'e2')+'e-2'),
-        ps_MIOTA: Math.floor(miotaObj.price_btc * 100000000),
-        ps_POWR: Math.floor(powrObj.price_btc * 100000000),
-        ps_ARDR: Math.floor(ardrObj.price_btc * 100000000),
-        ps_RDN: Math.floor(rdnObj.price_btc * 100000000),
-        ps_OMG: Math.floor(omgObj.price_btc * 100000000),
-        ps_WABI: Math.floor(wabiObj.price_btc * 100000000),
-        ps_ICX: Math.floor(icxObj.price_btc * 100000000),
-        ps_THC: Math.floor(thcObj.price_btc * 100000000),
-        ps_TKS: Math.floor(tksObj.price_btc * 100000000),
-        ps_NULS: Math.floor(nulsObj.price_btc * 100000000),
-        ch_BTC: btcObj.percent_change_24h,
-        ch_MIOTA: miotaObj.percent_change_24h,
-        ch_POWR: powrObj.percent_change_24h,
-        ch_ARDR: ardrObj.percent_change_24h,
-        ch_RDN: rdnObj.percent_change_24h,
-        ch_OMG: omgObj.percent_change_24h,
-        ch_WABI: wabiObj.percent_change_24h,
-        ch_ICX: icxObj.percent_change_24h,
-        ch_THC: thcObj.percent_change_24h,
-        ch_TKS: tksObj.percent_change_24h,
-        ch_NULS: nulsObj.percent_change_24h
-      });
-    }).catch((e) => {
-      if (e.code === 'ENOTFOUND') {
-        res.send('API not found!');
-      } else {
-        res.send(`Something wrong with Coinmarketcap API: ${e.message}`);
-        console.log(e.message);
+  axios.get(API_URL).then(({ data }) => {
+    const coinsDataToRender = allCoinsInfo.map(coin => {
+      const coinInfo = allCoinsInfo.find(info => info.id === coin.id);
+      return {
+        ...coinInfo,
+        ...data[coin.id],
+        usd: Number(Math.round(data[coin.id].usd+'e2')+'e-2'),
+        btc: Math.floor(data[coin.id].btc * 100000000),
+        usd_24h_change: Number(Math.round(data[coin.id].usd_24h_change+'e2')+'e-2')
       }
+    }).sort((a, b) => b.usd_market_cap - a.usd_market_cap);
+
+    res.render('lite', {
+      coinsDataToRender
     });
-  }
+  }).catch((e) => {
+    if (e.code === 'ENOTFOUND') {
+      res.send('API not found!');
+    } else {
+      res.send(`Something wrong: ${e.message}`);
+      console.log(e.message);
+    }
+  });
 });
 
 module.exports = router;
