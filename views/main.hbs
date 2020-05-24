@@ -7,6 +7,13 @@
     <link rel="icon" href="img/logo.svg">
     <link href="css/normalize.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+    <script>
+      (function() {
+        if (!location.href.endsWith('/') && location.pathname === '/hodler-serverful') {
+          window.location = location.href + '/';
+        }
+      }())
+    </script>
     <title>Hodler Serverful</title>
   </head>
   <body>
@@ -50,12 +57,6 @@
       </tbody>
     </table>
     <script>
-    (function() {
-      if (!location.href.endsWith('/') && location.pathname === '/hodler-serverful') {
-        window.location = location.href + '/';
-      }
-    }())
-
     const pcElem = document.getElementsByClassName("pc");
     for (let elem of pcElem) {
       let price = Number(elem.textContent);
