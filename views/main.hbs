@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="fonts/Manrope-Medium.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
     <link href="fonts/Manrope-ExtraBold.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
     <link rel="icon" href="img/logo.svg">
@@ -89,7 +90,6 @@
     const sortByOptions = ['highestFirst', 'lowestFirst', 'default'];
     let lastOption = 'default';
     const generateRowDOM = (coin) => {
-      console.log(coin);
       const row = document.createElement('tr');
       const nameCell = document.createElement('td');
       const priceCell = document.createElement('td');
@@ -117,7 +117,6 @@
           tbodyEl.appendChild(generateRowDOM(coin));
         });
         generatePriceChangeColor();
-        console.log('highestFirst');
       } else if (option === 'lowestFirst') {
         const coinsClone = [...coins];
         coinsClone.sort((a, b) => {
@@ -127,13 +126,11 @@
           tbodyEl.appendChild(generateRowDOM(coin));
         });
         generatePriceChangeColor();
-        console.log('lowestFirst');
       } else if (option === 'default') {
         coins.forEach(coin => {
           tbodyEl.appendChild(generateRowDOM(coin));
         });
         generatePriceChangeColor();
-        console.log('default, marketcap');
       }
       lastOption = option;
     };

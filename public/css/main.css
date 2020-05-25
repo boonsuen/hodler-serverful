@@ -152,3 +152,56 @@ tr:nth-child(odd):not(.row-head) {
 .change, td:last-child {
   width: 25%;
 }
+
+/* Responsive */
+@media (max-width: 800px) {
+  .name, .price, .change {
+    font-size: 20px;
+  }
+} 
+
+@media (max-width: 700px) {
+  .name, .price, .change {
+    font-size: 18px;
+  }
+
+  .price-table {
+    width: 90%;
+    font-size: 14px;
+  }
+
+  tr {
+    height: 46px;
+  }
+
+  th, td {
+    padding: 0 12px;
+  }
+
+  th {
+    height: 60px;
+  }
+} 
+
+@media (max-width: 550px) {
+  .logo {
+    width: 32px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .switch {
+    width: 180px;
+  }
+  
+  .switch a {
+    height: 45px;
+    font-size: 14px;
+  }
+
+  .name, .price, .change {
+    font-size: 16px;
+  }
+}
