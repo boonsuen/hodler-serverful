@@ -20,13 +20,13 @@
     <div class="header">
       <div class="links">
         <a href="https://github.com/boonsuen/hodler-serverful" target="_blank" rel="noopener noreferrer">
-          <img src="img/github.svg">
+          <img src="img/github.svg" alt="GitHub">
         </a>
         <a href="https://twitter.com/_wnxn" target="_blank" rel="noopener noreferrer">
-          <img src="img/twitter.svg">
+          <img src="img/twitter.svg" alt="Twitter">
         </a>
       </div>
-      <img class="logo" src="img/logo.svg">
+      <img class="logo" src="img/logo.svg" alt="Logo">
       <div class="title">Hodler</div>
     </div>
     <div class="switch">
@@ -48,7 +48,7 @@
       </thead>
       <tbody>
         {{#each coinsDataToRender}}
-          <tr>
+          <tr class="tbodyRow">
             <td>{{this.name}} ({{toUpperCase this.symbol}})</td>
             {{evaluateIfBitcoin this.id this.usd this.btc}}
             <td class="pc">{{this.usd_24h_change}}</td>
@@ -57,15 +57,95 @@
       </tbody>
     </table>
     <script>
-    const pcElem = document.getElementsByClassName("pc");
-    for (let elem of pcElem) {
-      let price = Number(elem.textContent);
-      if (price > 0) {
-        elem.style.color = "#4ae264";
-      } else if (price < 0) {
-        elem.style.color = "#ff8282";
+    const generatePriceChangeColor = () => {
+      const pcElem = document.getElementsByClassName('pc');    
+      for (let elem of pcElem) {
+        let price = Number(elem.textContent);
+        if (price > 0) {
+          elem.style.color = '#4ae264';
+        } else if (price < 0) {
+          elem.style.color = '#ff8282';
+        }
       }
+    };
+    generatePriceChangeColor();
+
+    const tableRows = document.querySelectorAll('.tbodyRow');
+    const cellsOfEachRow = [];
+    for (let i = 0; i < tableRows.length; i++) {
+      cellsOfEachRow.push(tableRows[i]);
     }
+    const coins = [];
+    cellsOfEachRow.forEach(tr => {
+      const coin = {};
+      for (let i = 0; i < tr.children.length; i++) {
+        coin[i] = tr.children[i].textContent;
+      }
+      coins.push(coin);
+    });
+
+    const changeTitleEl = document.querySelector('.change');
+    const tbodyEl = document.querySelector('tbody');
+    const sortByOptions = ['highestFirst', 'lowestFirst', 'default'];
+    let lastOption = 'default';
+    const generateRowDOM = (coin) => {
+      console.log(coin);
+      const row = document.createElement('tr');
+      const nameCell = document.createElement('td');
+      const priceCell = document.createElement('td');
+      const changeCell = document.createElement('td');
+      changeCell.classList.add('pc');    
+      
+      nameCell.textContent = `${coin[0]}`;
+      priceCell.textContent = `${coin[1]}`;
+      changeCell.textContent = `${coin[2]}`;
+      
+      row.appendChild(nameCell);
+      row.appendChild(priceCell);
+      row.appendChild(changeCell);
+
+      return row;
+    };
+    const sortCoinsBy = (option) => {
+      tbodyEl.innerHTML = '';
+      if (option === 'highestFirst') {
+        const coinsClone = [...coins];
+        coinsClone.sort((a, b) => {
+          return Number(b[2]) - Number(a[2]);
+        });
+        coinsClone.forEach(coin => {
+          tbodyEl.appendChild(generateRowDOM(coin));
+        });
+        generatePriceChangeColor();
+        console.log('highestFirst');
+      } else if (option === 'lowestFirst') {
+        const coinsClone = [...coins];
+        coinsClone.sort((a, b) => {
+          return Number(a[2]) - Number(b[2]);
+        });
+        coinsClone.forEach(coin => {
+          tbodyEl.appendChild(generateRowDOM(coin));
+        });
+        generatePriceChangeColor();
+        console.log('lowestFirst');
+      } else if (option === 'default') {
+        coins.forEach(coin => {
+          tbodyEl.appendChild(generateRowDOM(coin));
+        });
+        generatePriceChangeColor();
+        console.log('default, marketcap');
+      }
+      lastOption = option;
+    };
+    changeTitleEl.addEventListener('click', () => {
+      if (lastOption === 'default') {
+        sortCoinsBy('highestFirst');
+      } else if (lastOption === 'highestFirst') {
+        sortCoinsBy('lowestFirst');
+      } else if (lastOption === 'lowestFirst') {
+        sortCoinsBy('default');
+      }
+    });
     </script>
   </body>
 </html>
