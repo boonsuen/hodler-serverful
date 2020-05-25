@@ -146,6 +146,7 @@ tr:nth-child(odd):not(.row-head) {
 
 .change {
   cursor: pointer;
+  user-select: none;
 }
 
 .change, td:last-child {
