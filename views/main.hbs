@@ -73,9 +73,9 @@
 
     const tableRows = document.querySelectorAll('.tbodyRow');
     const cellsOfEachRow = [];
-    for (let i = 0; i < tableRows.length; i++) {
-      cellsOfEachRow.push(tableRows[i]);
-    }
+    [...tableRows].forEach(row => {
+      cellsOfEachRow.push(row);
+    });
     const coins = [];
     cellsOfEachRow.forEach(tr => {
       const coin = {};
