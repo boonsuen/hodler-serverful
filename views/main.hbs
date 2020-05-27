@@ -73,11 +73,11 @@
 
     const tableRows = document.querySelectorAll('.tbodyRow');
     const cellsOfEachRow = [];
-    [...tableRows].forEach(row => {
+    [...tableRows].map(row => {
       cellsOfEachRow.push(row);
     });
     const coins = [];
-    cellsOfEachRow.forEach(tr => {
+    cellsOfEachRow.map(tr => {
       const coin = {};
       for (let i = 0; i < tr.children.length; i++) {
         coin[i] = tr.children[i].textContent;
