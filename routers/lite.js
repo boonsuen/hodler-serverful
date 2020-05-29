@@ -33,9 +33,8 @@ const API_URL = `https://api.coingecko.com/api/v3/simple/price?ids=${allCoinsIdL
 router.get('/', (req, res) => {
   axios.get(API_URL).then(({ data }) => {
     const coinsDataToRender = allCoinsInfo.map(coin => {
-      const coinInfo = allCoinsInfo.find(info => info.id === coin.id);
       return {
-        ...coinInfo,
+        ...coin,
         ...data[coin.id],
         usd: Number(Math.round(data[coin.id].usd+'e2')+'e-2'),
         btc: Math.floor(data[coin.id].btc * 100000000),
